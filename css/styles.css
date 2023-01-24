@@ -6,3 +6,12 @@ body {
   background-color:  #3466af;
   color: #ffcb05;
 }
+
+header {
+  text-align: center;
+}
+
+.header-text {
+  font-size: 100px;
+  letter-spacing: 11px;
+}
