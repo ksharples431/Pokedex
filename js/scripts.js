@@ -1,4 +1,4 @@
-let pokemonList = [
+let pokeList = [
   {
     name: 'Dewgong',
     height: 1.7,
@@ -16,17 +16,17 @@ let pokemonList = [
   }
 ];
 
-for(let i = 0; i < pokemonList.length; i++) {
+function pokePrint(poke) {
   // name and height variables declared
-  let pokeName = pokemonList[i].name;
-  let pokeHeight = pokemonList[i].height;
+  let pokeName = poke.name;
+  let pokeHeight = poke.height;
 
   //loop through poke heights to display coordinated message
-  if (pokemonList[i].height > 1) {
+  if (poke.height > 1) {
     document.write(
       `${pokeName} (height: ${pokeHeight}) - Wow, that's big! <br>`
-    )
-  } else if(pokemonList[i].height < 0.5) {
+    );
+  } else if (poke.height < 0.5) {
     document.write(
       `${pokeName} (height: ${pokeHeight}) - Wow, that's tiny! <br>`
     );
@@ -36,3 +36,5 @@ for(let i = 0; i < pokemonList.length; i++) {
     );
   }
 }
+
+pokeList.forEach(pokePrint)
