@@ -17,6 +17,7 @@ let pokemonRepository = (function () {
     },
   ];
 
+
   function add(pokemon) {
     if (typeof pokemon === 'object') {
       pokeList.push(pokemon);
@@ -45,26 +46,18 @@ pokemonRepository.add({
   types: ['grass', 'poison']
 });
 
-pokemonRepository.add('bulbasaur');
+// pokemonRepository.add('bulbasaur');
 
 
-function pokePrint(poke) {
+function pokeMakeButton(poke) {
   let pokeName = poke.name;
-  let pokeHeight = poke.height;
-
-  if (poke.height > 1) {
-    document.write(
-      `${pokeName} (height: ${pokeHeight}) - Wow, that's big! <br>`
-    );
-  } else if (poke.height < 0.5) {
-    document.write(
-      `${pokeName} (height: ${pokeHeight}) - Wow, that's tiny! <br>`
-    );
-  } else {
-    document.write(
-      `${pokeName} (height: ${pokeHeight}) - Huh, he's pretty average. <br>`
-    );
-  }
+  let list = document.querySelector('ul');
+  let listItem = document.createElement('li');
+  let button = document.createElement('button');
+  button.innerText = pokeName;
+  button.classList.add('poke-button');
+  listItem.appendChild(button);
+  list.appendChild(listItem)
 }
 
-pokemonRepository.getAll().forEach(pokePrint);
+pokemonRepository.getAll().forEach(pokeMakeButton);
