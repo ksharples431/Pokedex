@@ -1,17 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Pokemon Solid', sans-serif;
+  font-family: 'Unbounded', cursive;
   line-height: 50px;
   letter-spacing: 3px;
   font-size: 30px;
-  background-color:  #3466af;
-  color: #ffcb05;
+  text-align: center;
+
 }
 
 header {
   text-align: center;
+  background-color:  #3466af;
+  color: #ffcb05;
+  width: 100%;
+  padding: 20px;
+  font-family: 'Pokemon Solid', sans-serif;
 }
 
 .header-text {
   font-size: 100px;
   letter-spacing: 11px;
+}
+
+ul {
+  list-style: none;
+}
+
+.poke-button {
+  height: 170px;
+  width: 70%;
+  font-family: 'Pokemon Solid', sans-serif;
+  line-height: 50px;
+  letter-spacing: 3px;
+  font-size: 30px;
+  color: #ffcb05;
+  background-color:  #3466af;
+  margin: 5px;
 }
