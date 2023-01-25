@@ -18,7 +18,11 @@ let pokemonRepository = (function () {
   ];
 
   function add(pokemon) {
-    pokeList.push(pokemon);
+    if (typeof pokemon === 'object') {
+      pokeList.push(pokemon);
+    } else {
+      alert('Please enter a Poke obejct')
+    }
   }
 
   function getAll() {
@@ -40,6 +44,8 @@ pokemonRepository.add({
   height: 0.7,
   types: ['grass', 'poison']
 });
+
+pokemonRepository.add('bulbasaur');
 
 
 function pokePrint(poke) {
