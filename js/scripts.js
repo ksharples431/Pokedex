@@ -1,27 +1,51 @@
-let pokeList = [
-  {
-    name: 'Dewgong',
-    height: 1.7,
-    types: ['ice', 'water']
-  },
-  {
-    name: 'Weedle',
-    height: 0.3,
-    types: ['bug', 'poison']
-  },
-  {
-    name: 'Oddish',
-    height: 0.5,
-    types: ['grass', 'poison']
+let pokemonRepository = (function () {
+  let pokeList = [
+    {
+      name: 'Dewgong',
+      height: 1.7,
+      types: ['ice', 'water'],
+    },
+    {
+      name: 'Weedle',
+      height: 0.3,
+      types: ['bug', 'poison'],
+    },
+    {
+      name: 'Oddish',
+      height: 0.5,
+      types: ['grass', 'poison'],
+    },
+  ];
+
+  function add(pokemon) {
+    pokeList.push(pokemon);
   }
-];
+
+  function getAll() {
+    return pokeList;
+  }
+
+  return {
+    add,
+    getAll
+  };
+
+})();
+
+
+console.log(pokemonRepository.getAll());
+
+pokemonRepository.add({
+  name: 'Bulbasaur',
+  height: 0.7,
+  types: ['grass', 'poison']
+});
+
 
 function pokePrint(poke) {
-  // name and height variables declared
   let pokeName = poke.name;
   let pokeHeight = poke.height;
 
-  //loop through poke heights to display coordinated message
   if (poke.height > 1) {
     document.write(
       `${pokeName} (height: ${pokeHeight}) - Wow, that's big! <br>`
@@ -37,4 +61,4 @@ function pokePrint(poke) {
   }
 }
 
-pokeList.forEach(pokePrint)
+pokemonRepository.getAll().forEach(pokePrint);
