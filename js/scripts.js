@@ -17,6 +17,18 @@ let pokemonRepository = (function () {
     },
   ];
 
+  function getAll() {
+    return pokeList;
+  }
+
+  function add(pokemon) {
+    if (typeof pokemon === 'object') {
+      pokeList.push(pokemon);
+    } else {
+      alert('Please enter a Poke obejct');
+    }
+  }
+
   function addListItem(pokemon) {
     let pokeName = pokemon.name;
     let list = document.querySelector('ul');
@@ -26,24 +38,25 @@ let pokemonRepository = (function () {
     button.classList.add('poke-button');
     listItem.appendChild(button);
     list.appendChild(listItem);
+    addListener(button, pokemon)
   }
 
-  function add(pokemon) {
-    if (typeof pokemon === 'object') {
-      pokeList.push(pokemon);
-    } else {
-      alert('Please enter a Poke obejct')
-    }
+  function addListener(element, pokemon) {
+    element.addEventListener('click', function () {
+      showDetails(pokemon);
+    });
   }
 
-  function getAll() {
-    return pokeList;
+  function showDetails(pokemon) {
+    console.log(pokemon.name);
   }
 
   return {
-    addListItem,
+    getAll,
     add,
-    getAll
+    addListener,
+    addListItem,
+    showDetails,
   };
 
 })();
