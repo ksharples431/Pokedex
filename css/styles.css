@@ -22,7 +22,7 @@ header {
 
 .header-text {
   font-size: 100px;
-  letter-spacing: 11px;
+  letter-spacing: 15px;
 }
 
 ul {
@@ -34,7 +34,7 @@ ul {
   width: 70%;
   font-family: 'Pokemon Solid', sans-serif;
   line-height: 50px;
-  letter-spacing: 3px;
+  letter-spacing: 7px;
   font-size: 30px;
   color: #ffcb05;
   background-color:  #3466af;

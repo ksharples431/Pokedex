@@ -16,11 +16,11 @@ let pokemonRepository = (function () {
 
   function addListItem(pokemon) {
     let pokeName = pokemon.name;
-    let pokeCaped = pokeName.charAt(0).toUpperCase() + pokeName.slice(1);
+    let pokeCapped = pokeName.charAt(0).toUpperCase() + pokeName.slice(1);
     let list = document.querySelector('ul');
     let listItem = document.createElement('li');
     let button = document.createElement('button');
-    button.innerText = pokeCaped;
+    button.innerText = pokeCapped;
     button.classList.add('poke-button');
     listItem.appendChild(button);
     list.appendChild(listItem);
