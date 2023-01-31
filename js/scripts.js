@@ -30,7 +30,6 @@ let pokemonRepository = (function () {
 
   function addListener(element, pokemon) {
     element.addEventListener('click', function () {
-      // showDetails(pokemon);
       showModal(pokemon);
     });
   }
@@ -69,11 +68,6 @@ let pokemonRepository = (function () {
         console.error(e);
       });
   }
-  //  function showDetails(pokemon) {
-  //    loadDetails(pokemon).then(function () {
-  //      console.log(pokemon);
-  //    });
-  //  }
 
   function showModal(pokemon) {
     loadDetails(pokemon).then(function () {
@@ -138,9 +132,8 @@ let pokemonRepository = (function () {
   return {
     getAll,
     add,
-    addListener,
     addListItem,
-    // showDetails,
+    addListener,
     loadList,
     loadDetails,
     showModal,
