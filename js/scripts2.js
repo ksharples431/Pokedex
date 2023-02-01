@@ -18,11 +18,14 @@ let pokemonRepository = (function () {
     let pokeName = pokemon.name;
     let pokeCapped = pokeName.charAt(0).toUpperCase() + pokeName.slice(1);
     let list = document.querySelector('ul');
+    list.classList.add('list-group', 'list-group-horizontal' )
     let listItem = document.createElement('li');
+    listItem.classList.add('group-list-item' )
     let button = document.createElement('button');
     button.innerText = pokeCapped;
-    button.classList.add('poke-button');
-    button.classList.add('show-modal');
+    button.classList.add('poke-button', 'show-modal', 'btn', 'btn-primary');
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '.modal');
     listItem.appendChild(button);
     list.appendChild(listItem);
     addListener(button, pokemon);
@@ -94,7 +97,6 @@ let pokemonRepository = (function () {
 
       let contentElement = document.createElement('p');
       contentElement.innerText = `Height: ${pokemon.height}`;
-      console.log(pokemon);
 
       modal.appendChild(closeButtonElement);
       modal.appendChild(titleElement);

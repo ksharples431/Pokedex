@@ -25,7 +25,8 @@ header.container {
   padding: 0;
   margin: 0 auto;
   height: 150px;
-  border: 3px black solid
+  border: 2px #007bff solid;
+  border-radius: 8px
 }
 
 .navbar-brand {
@@ -55,11 +56,6 @@ header.container {
   background-color:  #3466af;
   margin: 5px;
   border-radius: 8px;
-}
-
-.poke-button:hover,
-.poke-button:focus {
-  background-color: #4387f4
 }
 
 #modal-container {
