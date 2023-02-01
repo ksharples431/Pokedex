@@ -1,5 +1,5 @@
 let pokemonRepository = (function () {
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1000';
   let pokeList = [];
 
   function getAll() {
@@ -86,11 +86,11 @@ let pokemonRepository = (function () {
       let titleElement = document.createElement('h1');
       titleElement.innerText =
         pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-
-      let imageWrapper = document.createElement('div');
+      
+      let imageWrapper = document.createElement('div')
       let imageElement = document.createElement('img');
       imageElement.src = pokemon.imageUrl;
-      console.log(pokemon.imageUrl);
+      console.log(pokemon.imageUrl)
 
       let contentElement = document.createElement('p');
       contentElement.innerText = `Height: ${pokemon.height}`;
