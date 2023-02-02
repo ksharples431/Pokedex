@@ -87,10 +87,10 @@ let pokemonRepository = (function () {
       let modalBody = $(".modal-body");
       modalBody.empty();
       modalBody.append(
-        `<img class="modal-img" src="${pokemon.imageFront}">`
+        `<img class="modal-image" src="${pokemon.imageFront}">`
       );
       modalBody.append(
-        `<img class="modal-img" src="${pokemon.imageBack}">`
+        `<img class="modal-image" src="${pokemon.imageBack}">`
       );
       modalBody.append(`<p>Height: ${pokemon.height}</p>`);
       modalBody.append(`<p>Weight: ${pokemon.weight}</p>`);
