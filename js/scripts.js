@@ -1,5 +1,5 @@
 let pokemonRepository = (function () {
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1000';
   let pokeList = [];
 
   function getAll() {
@@ -18,11 +18,14 @@ let pokemonRepository = (function () {
     let pokeName = pokemon.name;
     let pokeCapped = pokeName.charAt(0).toUpperCase() + pokeName.slice(1);
     let list = document.querySelector('ul');
+    list.classList.add('list-group', 'list-group-horizontal' )
     let listItem = document.createElement('li');
+    listItem.classList.add('group-list-item' )
     let button = document.createElement('button');
     button.innerText = pokeCapped;
-    button.classList.add('poke-button');
-    button.classList.add('show-modal');
+    button.classList.add('poke-button', 'show-modal', 'btn', 'btn-primary');
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '.modal');
     listItem.appendChild(button);
     list.appendChild(listItem);
     addListener(button, pokemon);
@@ -60,9 +63,12 @@ let pokemonRepository = (function () {
         return response.json();
       })
       .then(function (details) {
-        item.imageUrl = details.sprites.front_default;
+        item.imageFront = details.sprites.front_default;
+        item.imageBack = details.sprites.back_default;
         item.height = details.height;
+        item.weight = details.weight
         item.types = details.types;
+        item.abilities = details.abilities;
       })
       .catch(function (e) {
         console.error(e);
@@ -71,46 +77,45 @@ let pokemonRepository = (function () {
 
   function showModal(pokemon) {
     loadDetails(pokemon).then(function () {
-      let modalContainer = document.getElementById('modal-container');
 
-      modalContainer.innerText = '';
-
-      let modal = document.createElement('div');
-      modal.classList.add('modal');
-
-      let closeButtonElement = document.createElement('button');
-      closeButtonElement.classList.add('modal-close');
-      closeButtonElement.innerText = 'Close';
-      closeButtonElement.addEventListener('click', hideModal);
-
-      let titleElement = document.createElement('h1');
-      titleElement.innerText =
+      let modalTitle = $(".modal-title")
+      modalTitle.empty()
+      let pokeCapped =
         pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-      
-      let imageWrapper = document.createElement('div')
-      let imageElement = document.createElement('img');
-      imageElement.src = pokemon.imageUrl;
-      console.log(pokemon.imageUrl)
+      modalTitle.append(pokeCapped)
 
-      let contentElement = document.createElement('p');
-      contentElement.innerText = `Height: ${pokemon.height}`;
-      console.log(pokemon);
+      let modalBody = $(".modal-body");
+      modalBody.empty();
+      modalBody.append(
+        `<img class="modal-image" src="${pokemon.imageFront}">`
+      );
+      modalBody.append(
+        `<img class="modal-image" src="${pokemon.imageBack}">`
+      );
+      modalBody.append(`<p>Height: ${pokemon.height}</p>`);
+      modalBody.append(`<p>Weight: ${pokemon.weight}</p>`);
 
-      modal.appendChild(closeButtonElement);
-      modal.appendChild(titleElement);
-      imageWrapper.appendChild(imageElement);
-      modal.appendChild(imageWrapper);
-      modal.appendChild(contentElement);
-      modalContainer.appendChild(modal);
-
-      modalContainer.classList.add('is-visible');
-
-      modalContainer.addEventListener('click', (e) => {
-        let target = e.target;
-        if (target === modalContainer) {
-          hideModal();
+      let types = pokemon.types;
+      let typesList = ""
+      for (let i = 0; i < types.length; i++) {
+        if (i < types.length - 1) {
+          typesList += types[i].type.name + ', ';
+        } else {
+          typesList += types[i].type.name;
         }
-      });
+      }
+      modalBody.append(`<p>Types: ${typesList}</p>`);
+
+      let abilities = pokemon.abilities
+      let abilityList = ""
+      for (let i = 0; i < abilities.length; i++) {
+        if(i < abilities.length - 1) {
+          abilityList += abilities[i].ability.name + ", "
+        } else {
+          abilityList += abilities[i].ability.name;
+        }
+      }
+      modalBody.append(`<p>Abilities: ${abilityList}</p>`);
     });
   }
 
