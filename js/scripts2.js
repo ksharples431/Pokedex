@@ -99,9 +99,9 @@ let pokemonRepository = (function () {
       let typesList = ""
       for (let i = 0; i < types.length; i++) {
         if (i < types.length - 1) {
-          typesList = types[i].type.name + ', ';
+          typesList += types[i].type.name + ', ';
         } else {
-          typesList = types[i].type.name;
+          typesList += types[i].type.name;
         }
       }
       modalBody.append(`<p>Types: ${typesList}</p>`);
@@ -110,9 +110,9 @@ let pokemonRepository = (function () {
       let abilityList = ""
       for (let i = 0; i < abilities.length; i++) {
         if(i < abilities.length - 1) {
-          abilityList = abilities[i].ability.name + ", "
+          abilityList += abilities[i].ability.name + ", "
         } else {
-          abilityList = abilities[i].ability.name;
+          abilityList += abilities[i].ability.name;
         }
       }
       modalBody.append(`<p>Abilities: ${abilityList}</p>`);
