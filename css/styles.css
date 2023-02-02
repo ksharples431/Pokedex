@@ -78,3 +78,10 @@ header.container {
 .modal-image {
   height: 150px
 }
+
+@media all and (max-width: 465px) {
+  .intro {
+    font-size: 20px;
+    line-height: 20px
+  }
+}
