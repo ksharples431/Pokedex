@@ -82,6 +82,6 @@ header.container {
 @media all and (max-width: 465px) {
   .intro {
     font-size: 20px;
-    line-height: 20px
+    line-height: 22px;
   }
 }
