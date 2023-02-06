@@ -2,10 +2,12 @@ let pokemonRepository = (function () {
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1000';
   let pokeList = [];
 
+  // returns a list of all pokes
   function getAll() {
     return pokeList;
   }
 
+  // adds a new poke to the list
   function add(pokemon) {
     if (typeof pokemon === 'object') {
       pokeList.push(pokemon);
@@ -14,29 +16,44 @@ let pokemonRepository = (function () {
     }
   }
 
+  // adds visual list item
   function addListItem(pokemon) {
     let pokeName = pokemon.name;
     let pokeCapped = pokeName.charAt(0).toUpperCase() + pokeName.slice(1);
+    // *questions about jquery*
     let list = document.querySelector('ul');
-    list.classList.add('list-group', 'list-group-horizontal' )
+    // let list = $('ul');
+    list.classList.add('list-group', 'list-group-horizontal');
+    // list.addClass('list-group', 'list-group-horizontal');
     let listItem = document.createElement('li');
-    listItem.classList.add('group-list-item' )
+    // let listItem = $('<li class="group-list-item"></li>')
+    listItem.classList.add('group-list-item');
     let button = document.createElement('button');
+    // let button = $('<button class="'poke-button', 'show-modal', 'btn', 'btn-primary'" data-toggle="modal" data-target=".modal">pokeCapped</button>')
     button.innerText = pokeCapped;
-    button.classList.add('poke-button', 'show-modal', 'btn', 'btn-primary');
+    button.classList.add(
+      'poke-button',
+      'show-modal',
+      'btn',
+      'btn-primary'
+    );
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '.modal');
     listItem.appendChild(button);
+    //listItem.append(button)
     list.appendChild(listItem);
+    // list.append(listItem);
     addListener(button, pokemon);
   }
 
+  // adds event listener
   function addListener(element, pokemon) {
     element.addEventListener('click', function () {
       showModal(pokemon);
     });
   }
 
+  // fetches poke list from api
   function loadList() {
     return fetch(apiUrl)
       .then(function (response) {
@@ -56,6 +73,7 @@ let pokemonRepository = (function () {
       });
   }
 
+  // add each pokes details from api
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url)
@@ -66,7 +84,7 @@ let pokemonRepository = (function () {
         item.imageFront = details.sprites.front_default;
         item.imageBack = details.sprites.back_default;
         item.height = details.height;
-        item.weight = details.weight
+        item.weight = details.weight;
         item.types = details.types;
         item.abilities = details.abilities;
       })
@@ -75,16 +93,18 @@ let pokemonRepository = (function () {
       });
   }
 
+  // displays modal
   function showModal(pokemon) {
     loadDetails(pokemon).then(function () {
-
-      let modalTitle = $(".modal-title")
-      modalTitle.empty()
+      // modal title
+      let modalTitle = $('.modal-title');
+      modalTitle.empty();
       let pokeCapped =
         pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-      modalTitle.append(pokeCapped)
+      modalTitle.append(pokeCapped);
 
-      let modalBody = $(".modal-body");
+      //modal body
+      let modalBody = $('.modal-body');
       modalBody.empty();
       modalBody.append(
         `<img class="modal-image" src="${pokemon.imageFront}">`
@@ -96,7 +116,8 @@ let pokemonRepository = (function () {
       modalBody.append(`<p>Weight: ${pokemon.weight}</p>`);
 
       let types = pokemon.types;
-      let typesList = ""
+      let typesList = '';
+      // puts comma after each item unless last item
       for (let i = 0; i < types.length; i++) {
         if (i < types.length - 1) {
           typesList += types[i].type.name + ', ';
@@ -106,11 +127,12 @@ let pokemonRepository = (function () {
       }
       modalBody.append(`<p>Types: ${typesList}</p>`);
 
-      let abilities = pokemon.abilities
-      let abilityList = ""
+      let abilities = pokemon.abilities;
+      let abilityList = '';
+      // puts comma after each item unless last item
       for (let i = 0; i < abilities.length; i++) {
-        if(i < abilities.length - 1) {
-          abilityList += abilities[i].ability.name + ", "
+        if (i < abilities.length - 1) {
+          abilityList += abilities[i].ability.name + ', ';
         } else {
           abilityList += abilities[i].ability.name;
         }
