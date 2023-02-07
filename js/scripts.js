@@ -97,7 +97,6 @@ let pokemonRepository = (function () {
   function showModal(pokemon) {
     loadDetails(pokemon).then(function () {
       // modal title
-      // eslint-disable-next-line no-undef
       let modalTitle = $('.modal-title');
       modalTitle.empty();
       let pokeCapped =
@@ -105,7 +104,6 @@ let pokemonRepository = (function () {
       modalTitle.append(pokeCapped);
 
       //modal body
-      // eslint-disable-next-line no-undef
       let modalBody = $('.modal-body');
       modalBody.empty();
       modalBody.append(
