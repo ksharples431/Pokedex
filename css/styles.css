@@ -24,14 +24,39 @@ header.container {
   font-family: 'Pokemon Solid', sans-serif;
   padding: 0;
   margin: 0 auto;
-  height: 150px;
-  border: 2px #007bff solid;
+  height: 180px;
+  border: 2px #ffcb05 solid;
   border-radius: 8px
+}
+
+nav {
+  padding-top: 30px;
+  padding-bottom: 20px
 }
 
 .navbar-brand {
   font-size: 60px;
-  letter-spacing: 5px
+  letter-spacing: 5px;
+  padding-bottom: 25px
+}
+
+form {
+  font-family: 'Unbounded', cursive;
+}
+
+input {
+  letter-spacing: 2px;
+}
+
+.search-btn {
+  color: #ffcb05;
+  border-color: #ffcb05;
+}
+
+.search-btn:hover {
+  background-color:#ffcb05;
+  color: rgb(72, 71, 71);
+  border-color: #3466af;
 }
 
 .intro {
@@ -56,6 +81,7 @@ header.container {
   background-color:  #3466af;
   margin: 5px;
   border-radius: 8px;
+  border-color: #ffcb05;
 }
 
 .modal {
